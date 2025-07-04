@@ -8,7 +8,7 @@ jest.mock('../../services/ai.service');
 
 describe('Snippet Service - Testing creation', () => {
   it('should create a snippet with a summary', async () => {
-    (AIService.summarize as jest.Mock).mockResolvedValue('mocked summary');
+    (AIService.summarize as jest.Mock).mockResolvedValue(mockedSnippet.summary);
 
     (Snippet.create as jest.Mock).mockImplementation(async (data) => ({
       _id: snippetMockedId,
@@ -16,9 +16,9 @@ describe('Snippet Service - Testing creation', () => {
       summary: data.summary,
     }));
 
-    const result = await SnippetService.create('testing');
+    const result = await SnippetService.create(mockedSnippetRequest.text);
 
-    expect(AIService.summarize).toHaveBeenCalledWith('testing');
+    expect(AIService.summarize).toHaveBeenCalledWith(mockedSnippetRequest.text);
     expect(Snippet.create).toHaveBeenCalledWith(mockedSnippetRequest);
     expect(result).toEqual(mockedSnippet);
   });

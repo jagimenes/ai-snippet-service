@@ -2,14 +2,16 @@
   "name": "ai-snippet-service",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
   "scripts": {
+    "build": "tsc",
+    "dev": "npx tsx watch src/server.ts",
     "test": "jest --runInBand",
     "lint": "eslint . --ext .ts"
   },
   "jest": {
     "preset": "ts-jest",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": ["/node_modules/", "/dist/"]
   },
   "repository": {
     "type": "git",
@@ -25,12 +27,14 @@
   "description": "",
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
+    "cors": "^2.8.5",
     "dotenv": "^17.0.1",
     "express": "^5.1.0",
     "mongoose": "^8.16.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/jest": "^30.0.0",
     "@types/semver": "^7.7.0",
