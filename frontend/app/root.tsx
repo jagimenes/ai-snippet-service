@@ -7,6 +7,9 @@ import {
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import "./tailwind.css";
 
 export const links: LinksFunction = () => [
@@ -41,5 +44,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <>
+      <Outlet />
+      <ToastContainer position="top-right" autoClose={3000} />
+    </>);
 }
